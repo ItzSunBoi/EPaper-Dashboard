@@ -41,9 +41,16 @@ LAYOUT_DIR = os.path.join(CWD, LAYOUT_DIR)
 if "layout.json" not in list(os.walk(LAYOUT_DIR))[0][2]:
     raise ImportError(f"layout.json Not found at {LAYOUT_DIR}")
 
+SECRET_DIR = "secrets.token"
+
+SECRET_DIR = os.path.join(CWD, SECRET_DIR)
+if "secrets.token" not in list(os.walk(LAYOUT_DIR))[0][2]:
+    raise ImportError(f"secret.token Not found at {SECRET_DIR}")
+
 ICS_DIR = os.path.join(CWD, ICS_DIR)
 
 layout = read_layout(os.path.join(LAYOUT_DIR, "layout.json"))
+secret = read_layout(os.path.join(CWD, "secrets.token"))
 
 cache_session = requests_cache.CachedSession("cache/http_cache", expire_after=600)
 retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
@@ -68,12 +75,12 @@ def TimeFormatter(input: dict | str) -> datetime:
 def ColorFormatter(input: list) -> tuple:
     return (input[0], input[1], input[2])
     
-def updateData(layout):
+def updateData(secret):
     responses = openmeteo.weather_api(url, params=params)
     WeatherResponse = responses[0]
 
     CalendarSource = []
-    for source in layout["CalendarSource"]:
+    for source in secret:
         temp =     {
             "name" : source["name"],
             "url" : source["url"]
@@ -245,7 +252,7 @@ if __name__ == "__main__":
 
     next_update = datetime.fromisoformat(args.next_update) if args.next_update else datetime.now() + timedelta(minutes=15)
 
-    ics_text, weather_frames = updateData(layout)
+    ics_text, weather_frames = updateData(secret)
     start = datetime.now().date()
     length = timedelta(1)
 
