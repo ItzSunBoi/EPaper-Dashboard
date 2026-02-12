@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 600,
+    "height": 400,
+    "rotation": 0
+  },
+  "global": {
+    "background": [255,255,255],
+    "defaultFont": "cppImported",
+    "defaultFontSize": 8
+  },
+  "widgets": [
+    {
+        "id" : "Title",
+        "enabled": true,
+        "type" : "DateTimeFrame",
+        "location" : [0,0],
+        "size" : {
+            "width": 350, 
+            "height": 50
+        },
+        "parameters": {
+            "time" : "Now"
+        }
+    },
+    {
+        "id" : "VisualCalendar",
+        "enabled": true,
+        "type" : "BarCalender",
+        "location" : [160,50],
+        "size" : {
+            "width": 75, 
+            "height": 225
+        },
+        "parameters": {
+            "barColor" : [0,0,255], 
+            "NowLineColor": [0,0,0], 
+            "fontSize": 8
+        }
+    },
+    {
+        "id" : "UpcomingEvents",
+        "enabled": true,
+        "type" : "UpcomingEventsFrame",
+        "location" : [10,50],
+        "size" : {
+            "width": 150, 
+            "height": 225
+        },
+        "parameters": {
+            "padding" : 5,
+            "line_gap" : 1,
+            "section_gap": 5,
+            "fontSize" : 8,
+            "bg" : [255, 255, 255],
+            "fg" : [0, 0, 0]
+        }
+    },
+    {
+        "id" : "EventSummary",
+        "enabled": true,
+        "type" : "EventSummaryFrame",
+        "location" : [235,50],
+        "size" : {
+            "width": 125, 
+            "height": 225
+        },
+        "parameters": {
+            "template" : "Today\n<TotalEvents> Events\n<totalTimeInEvents> in Events\n<totalTimeNotInEvents> Free",
+            "fontSize": 16,
+            "padding": 5,
+            "line_gap": 1,
+            "bg" : [255, 255, 255],
+            "fg" : [0, 0, 0]
+        }
+    },
+    {
+        "id" : "DaysTillHome",
+        "enabled": true,
+        "type" : "CountdownFrame",
+        "location" : [350,0],
+        "size" : {
+            "width": 250, 
+            "height": 60
+        },
+        "parameters": {
+            "template": "还有<days>天回家",
+            "progressbarHeight": 20,
+            "padding": 5,
+            "startTime": {
+                "year" : 2026,
+                "month" : 1,
+                "day" : 13,
+                "hour" : 11,
+                "minute" : 0
+            },
+            "targetTime": {
+                "year" : 2026,
+                "month" : 2,
+                "day" : 13,
+                "hour" : 11,
+                "minute" : 0
+            },
+            "now": "Now",
+            "fg": [0,255,255],
+            "bg": [0,0,0]
+        }
+    },
+    {
+        "id" : "DaysTillExams",
+        "enabled": true,
+        "type" : "CountdownFrame",
+        "location" : [350,60],
+        "size" : {
+            "width": 250, 
+            "height": 60
+        },
+        "parameters": {
+            "template": "考试还有<days>天",
+            "progressbarHeight": 20,
+            "padding": 5,
+            "startTime": {
+                "year" : 2026,
+                "month" : 1,
+                "day" : 13,
+                "hour" : 11,
+                "minute" : 0
+            },
+            "targetTime": {
+                "year" : 2026,
+                "month" : 5,
+                "day" : 6,
+                "hour" : 11,
+                "minute" : 0
+            },
+            "now": "Now",
+            "fg": [0,255,255],
+            "bg": [0,0,0]
+        }
+    },
+    {
+        "id" : "WeatherAndJoke",
+        "enabled": true,
+        "type" : "HourlyRecommendation",
+        "location" : [350,120],
+        "size" : {
+            "width": 250,
+            "height": 160
+        },
+        "parameters": {
+            "fontSize": 12,
+            "fun" : true
+        }
+    },
+    {
+        "id" : "AllWeather",
+        "enabled": true,
+        "type" : "WeatherFrame",
+        "location" : [0,280],
+        "size" : {
+            "width": 600, 
+            "height": 100
+        },
+        "parameters": {
+            "hours_ahead" : 6, 
+            "fontSize" : 12
+        }
+    },
+    {
+        "id" : "SunLightTempSummary",
+        "enabled": true,
+        "type" : "DaySummaryFrame",
+        "location" : [0,380],
+        "size" : {
+            "width": 400, 
+            "height": 20
+        },
+        "parameters": {
+            "template" : "Sun: <sunrise> - <sunset> for <daylight> | Temp: H:<tempHigh>'(<feelsTempHigh>') L:<tempLow>'(<feelsTempLow>') A:<tempAvg>'(<feelsTempAvg>')",
+            "fontSize" : 8,
+            "bg": [255, 255, 255],
+            "fg": [0, 0, 0]
+        }
+    },
+    {
+        "id" : "LastUpdated",
+        "enabled": true,
+        "type" : "UpdateStatusFrame",
+        "location" : [400,380],
+        "size" : {
+            "width": 200, 
+            "height": 20
+        },
+        "parameters": {
+            "template" :"Last Updated <lastUpdated> Next at <nextUpdate>",
+            "dateNow": "Now",
+            "dateNext": {
+                "type" : "delta",
+                "minute" : 15
+            },
+            "fontSize" : 8
+        }
+    }
+  ],
+    "weatherParams" : {
+        "latitude": 51.4552,
+        "longitude": -2.5966,
+        "daily": [
+            "temperature_2m_mean",
+            "sunrise",
+            "sunset",
+            "weather_code",
+            "temperature_2m_min",
+            "temperature_2m_max",
+            "apparent_temperature_max",
+            "apparent_temperature_min",
+            "daylight_duration",
+            "apparent_temperature_mean"
+        ],
+        "hourly": [
+            "weather_code",
+            "temperature_2m",
+            "apparent_temperature",
+            "precipitation_probability",
+            "relative_humidity_2m",
+            "wind_direction_10m",
+            "wind_speed_10m",
+            "rain",
+            "is_day"
+        ],
+        "current": [
+            "temperature_2m",
+            "relative_humidity_2m",
+            "apparent_temperature",
+            "is_day",
+            "precipitation",
+            "weather_code",
+            "wind_speed_10m",
+            "wind_direction_10m",
+            "wind_gusts_10m",
+            "rain"
+        ],
+        "timezone": "auto",
+        "forecast_days": 3
+    }
+} 
